@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Mars Data</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <center>
+                    <h2>Mission to Mars</h2>
+                    <br>
+                    <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Get New Data</a></p>
+                </center><br>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <h3>Latest Mars News</h3><br>
+                <p><h4><i>{{ nasa.recent_title }}</i></h4></p>
+                <p>{{ nasa.recent_article }}</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8">
+                <h3>Featured Mars Image</h3><br>
+                <img src="{{ nasa.feat_img_url }}" alt="Mars" />
+            </div>
+            <div class="col-md-4">
+                <h3>Current Weather on Mars:</h3><br>
+                <p>{{ nasa.latest_tweet }}</p>
+                <br><br>
+                <h3>Mars Facts:</h3>
+                <p>{{ nasa.facts_table_html|safe }}</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <h3>Mars Hemispheres</h3>
+            </div>
+        </div>
+        <div class="row">
+            {% for dict in nasa.hemisphere_image_dict %}
+                <div class="col-md-6">
+                    <img src="{{ dict.url }}" class="img-responsive" width="100%" />
+                    <p><h4>{{ dict.title }}</h4></p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+
+</html>
