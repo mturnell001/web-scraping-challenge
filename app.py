@@ -14,10 +14,13 @@ nasa_db = client.nasa_db
 def home():
 
     # Find the first record of data from the mongo database
-    nasa_data = nasa_db.mars.find()[0]
-
-    # Return template and data
-    return render_template("index.html", nasa=nasa_data)
+    try:
+        nasa_data = nasa_db.mars.find()[0]
+    except:
+        return redirect("/scrape")
+    else:
+        # Return template and data
+        return render_template("index.html", nasa=nasa_data)
 
 
 # Route that will trigger the scrape function
